@@ -1,9 +1,22 @@
 group 'com.sharpandrew'
 version '1.0-SNAPSHOT'
 
+apply plugin: 'application'
 apply plugin: 'java'
 
-sourceCompatibility = 1.5
+mainClassName = 'com.sharpandrew.learndropwizard.HelloWorldApplication'
+sourceCompatibility = 1.8
+
+run {
+    if(System.getProperty("exec.args") != null) {
+        args System.getProperty("exec.args").split()
+    }
+}
+
+sourceSets {
+    main.java.srcDir "src/main/java"
+    main.resources.srcDir "src/main/resources"
+}
 
 repositories {
     mavenCentral()
@@ -13,3 +26,14 @@ dependencies {
     compile group: 'io.dropwizard', name: 'dropwizard-core', version: "${dropwizardVersion}"
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
+
+jar {
+    manifest {
+        attributes(
+                'Manifest-Version': '1.0',
+                'Main-Class': 'com.sharpandrew.learndropwizard.HelloWorldApplication',
+                'Class-Path': '.'
+        )
+    }
+}
+
