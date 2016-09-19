@@ -1,7 +1,18 @@
 group 'com.sharpandrew'
 version '1.0-SNAPSHOT'
 
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.bmuschko:gradle-docker-plugin:3.0.3'
+    }
+}
+
 apply plugin: 'application'
+apply plugin: 'com.bmuschko.docker-java-application'
 apply plugin: 'java'
 
 mainClassName = 'com.sharpandrew.learndropwizard.HelloWorldApplication'
@@ -27,13 +38,25 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
 
-jar {
-    manifest {
-        attributes(
-                'Manifest-Version': '1.0',
-                'Main-Class': 'com.sharpandrew.learndropwizard.HelloWorldApplication',
-                'Class-Path': '.'
-        )
+// for `docker` block
+configurations {
+    dockerJava {
+        resolutionStrategy {
+            force 'de.gesellix:unix-socket-factory:2016-04-06T22-21-19'
+        }
     }
+}
+
+def dockerTagName = "${group}/${name}:${version}"
+def dockerPort = 8080
+
+docker {
+    javaApplication {
+        baseImage = 'openjdk:8u102'
+        maintainer = 'Andrew Sharp "me@sharpandrew.com"'
+        ports = [dockerPort]
+        tag = dockerTagName
+    }
+    url = 'unix:///var/run/docker.sock'
 }
 
