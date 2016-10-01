@@ -1,4 +1,5 @@
 # Learn Dropwizard
+![Build Status](https://circleci.com/gh/ags799/learn-dropwizard.svg?style=shield&circle-token=beac835a1c461670d578e3016d6b85581721e19f)
 
 Practice for learning [Dropwizard](http://dropwizard.io).
 
