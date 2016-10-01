@@ -28,4 +28,22 @@ public class Saying {
         return content;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Saying saying = (Saying) o;
+
+        if (id != saying.id) return false;
+        return content != null ? content.equals(saying.content) : saying.content == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (content != null ? content.hashCode() : 0);
+        return result;
+    }
 }
