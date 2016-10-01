@@ -1,6 +1,6 @@
 # Learn Dropwizard
 
-Practice for learning [Dropwizard](www.dropwizard.io).
+Practice for learning [Dropwizard](http://dropwizard.io).
 
 ## Development
 
