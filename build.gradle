@@ -41,7 +41,13 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: "${junitVersion}"
 }
 
-// for `docker` block
+checkstyle {
+    configFile = file('checkstyle.xml')
+    toolVersion = "${checkstyleVersion}"
+}
+
+// docker
+
 configurations {
     dockerJava {
         resolutionStrategy {
