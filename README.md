@@ -7,15 +7,23 @@ Practice for learning [Dropwizard](http://dropwizard.io).
 Build with
 
     ./gradlew build
-    
+
 Clean with
 
     ./gradlew clean
-    
+
 Build a Docker container named
 `com.sharpandrew/learn-dropwizard:$VERSION` with
 
     ./gradlew dockerBuildImage
+
+Run that Docker container with
+
+    ./gradlew dockerRun
+
+Issue requests against the running app with
+
+    curl localhost:8080/$YOUR_PATH_HERE
     
 ## TODO
 

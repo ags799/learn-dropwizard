@@ -60,3 +60,6 @@ docker {
     url = 'unix:///var/run/docker.sock'
 }
 
+task dockerRun(type: Exec, dependsOn: 'dockerBuildImage', group: 'docker') {
+    commandLine 'docker', 'run', '--rm', '-p', "${dockerPort}:${dockerPort}", dockerTagName, 'server'
+}
