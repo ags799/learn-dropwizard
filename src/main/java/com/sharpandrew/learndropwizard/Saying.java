@@ -1,55 +1,13 @@
 package com.sharpandrew.learndropwizard;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import org.hibernate.validator.constraints.Length;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.immutables.value.Value;
 
-public class Saying {
-    private long id;
-
-    @Length(max = 3)
-    private String content;
-
-    public Saying() {
-        // Jackson deserialization
-    }
-
-    public Saying(long id, String content) {
-        this.id = id;
-        this.content = content;
-    }
-
-    @JsonProperty
-    public long getId() {
-        return id;
-    }
-
-    @JsonProperty
-    public String getContent() {
-        return content;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
-        }
-
-        Saying saying = (Saying) obj;
-
-        if (id != saying.id) {
-            return false;
-        }
-        return content != null ? content.equals(saying.content) : saying.content == null;
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (content != null ? content.hashCode() : 0);
-        return result;
-    }
+@Value.Immutable
+@JsonSerialize
+@JsonDeserialize
+public abstract class Saying {
+    public abstract long getId();
+    public abstract String getContent();
 }
