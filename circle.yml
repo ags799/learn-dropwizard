@@ -1,0 +1,12 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  override:
+    - ./gradlew dockerBuildImage
+
+test:
+  override:
+    - ./gradlew dockerRun
+    - curl -v localhost:8080/hello-world
