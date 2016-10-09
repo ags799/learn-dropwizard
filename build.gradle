@@ -43,6 +43,7 @@ dependencies {
 
 checkstyle {
     configFile = file('checkstyle.xml')
+    ignoreFailures = false
     toolVersion = "${checkstyleVersion}"
 }
 

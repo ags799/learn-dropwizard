@@ -29,13 +29,19 @@ public class Saying {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
 
-        Saying saying = (Saying) o;
+        Saying saying = (Saying) obj;
 
-        if (id != saying.id) return false;
+        if (id != saying.id) {
+            return false;
+        }
         return content != null ? content.equals(saying.content) : saying.content == null;
 
     }
