@@ -12,8 +12,11 @@ buildscript {
 }
 
 apply plugin: 'application'
+apply plugin: 'checkstyle'
 apply plugin: 'com.bmuschko.docker-java-application'
+apply plugin: 'findbugs'
 apply plugin: 'java'
+apply plugin: 'pmd'
 
 mainClassName = 'com.sharpandrew.learndropwizard.HelloWorldApplication'
 sourceCompatibility = 1.8
@@ -38,7 +41,14 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: "${junitVersion}"
 }
 
-// for `docker` block
+checkstyle {
+    configFile = file('checkstyle.xml')
+    ignoreFailures = false
+    toolVersion = "${checkstyleVersion}"
+}
+
+// docker
+
 configurations {
     dockerJava {
         resolutionStrategy {
