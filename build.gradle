@@ -7,7 +7,7 @@ buildscript {
     }
 
     dependencies {
-        classpath group: "com.bmuschko", name: "gradle-docker-plugin", version: "${gradleDockerPluginVersion}"
+        classpath group: 'com.bmuschko', name: 'gradle-docker-plugin', version: "${gradleDockerPluginVersion}"
     }
 }
 
@@ -38,6 +38,8 @@ repositories {
 
 dependencies {
     compile group: 'io.dropwizard', name: 'dropwizard-core', version: "${dropwizardVersion}"
+    compile group: 'org.immutables', name: 'value', version: "${immutablesVersion}"
+
     testCompile group: 'junit', name: 'junit', version: "${junitVersion}"
 }
 
@@ -45,6 +47,10 @@ checkstyle {
     configFile = file('checkstyle.xml')
     ignoreFailures = false
     toolVersion = "${checkstyleVersion}"
+}
+
+findbugs {
+    excludeFilter = file('findbugs-exclude.xml')
 }
 
 // docker
