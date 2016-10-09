@@ -5,9 +5,7 @@ machine:
 dependencies:
   override:
     - docker pull openjdk:8u102
-    - ./gradlew dockerBuildImage
 
 test:
   override:
-    - ./gradlew dockerRun
-    - curl -v localhost:8080/hello-world
+    - ./gradlew dockerBuildImage
