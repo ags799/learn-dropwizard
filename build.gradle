@@ -67,7 +67,7 @@ configurations {
     }
 }
 
-def dockerTagName = "${group}/${name}:${version}"
+def dockerTagName = "ags799/${name}:${version}"
 def dockerPort = 8080
 
 docker {
