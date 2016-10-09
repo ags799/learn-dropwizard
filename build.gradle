@@ -1,6 +1,3 @@
-group 'com.sharpandrew'
-version '1.0-SNAPSHOT'
-
 buildscript {
     repositories {
         jcenter()
@@ -11,12 +8,19 @@ buildscript {
     }
 }
 
+plugins {
+    id 'com.palantir.git-version' version '0.1.3'
+}
+
 apply plugin: 'application'
 apply plugin: 'checkstyle'
 apply plugin: 'com.bmuschko.docker-java-application'
 apply plugin: 'findbugs'
 apply plugin: 'java'
 apply plugin: 'pmd'
+
+group 'com.sharpandrew'
+version gitVersion()
 
 mainClassName = 'com.sharpandrew.learndropwizard.HelloWorldApplication'
 sourceCompatibility = 1.8
