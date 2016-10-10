@@ -6,7 +6,7 @@ Practice for learning [Dropwizard](http://dropwizard.io).
 
 ## Usage
 
-Visit our [Docker Hub page](https://hub.docker.com/r/ags799/learn-dropwizard/) for
+Visit the [Docker Hub page](https://hub.docker.com/r/ags799/learn-dropwizard/) for
 download and usage instructions.
 
 ## Development
