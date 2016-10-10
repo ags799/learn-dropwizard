@@ -1,5 +1,5 @@
 # Learn Dropwizard
-![Build Status](https://circleci.com/gh/ags799/learn-dropwizard.svg?style=shield&circle-token=beac835a1c461670d578e3016d6b85581721e19f)
+[![Build Status](https://circleci.com/gh/ags799/learn-dropwizard.svg?style=shield&circle-token=beac835a1c461670d578e3016d6b85581721e19f)](https://circleci.com/gh/ags799/learn-dropwizard)
 [![Code Climate](https://codeclimate.com/github/ags799/learn-dropwizard/badges/gpa.svg)](https://codeclimate.com/github/ags799/learn-dropwizard)
 
 Practice for learning [Dropwizard](http://dropwizard.io).
