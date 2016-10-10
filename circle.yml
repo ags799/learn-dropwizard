@@ -9,6 +9,7 @@ dependencies:
 test:
   override:
     - ./gradlew dockerBuildImage
+    - docker tag ags799/learn-dropwizard ags799/learn-dropwizard:latest
 
 deployment:
   hub:
