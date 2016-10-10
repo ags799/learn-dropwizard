@@ -2,10 +2,6 @@ machine:
   services:
     - docker
 
-dependencies:
-  override:
-    - docker pull openjdk:8u102
-
 test:
   override:
     - ./gradlew dockerBuildImage
