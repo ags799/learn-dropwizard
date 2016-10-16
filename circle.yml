@@ -4,12 +4,11 @@ machine:
 
 test:
   override:
-    - ./gradlew dockerBuildImage
+    - ./gradlew dockerBuild
 
 deployment:
   hub:
     branch: master
     commands:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-      - 'version="$(./gradlew properties | sed -n ''s/^version: \(.*\)$/\1/p'')" && docker tag ags799/learn-dropwizard:$version ags799/learn-dropwizard:latest'
       - docker push ags799/learn-dropwizard
