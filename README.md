@@ -30,7 +30,7 @@ Run that Docker container with
 
 Issue requests against the running app with
 
-    curl localhost:8080/$YOUR_PATH_HERE
+    curl -i -X $METHOD -H 'Content-Type: application/json' localhost:8080/$YOUR_PATH_HERE
 
 This project follows [GitHub Flow](https://guides.github.com/introduction/flow/)
 and [Semantic Versioning 2.0.0](http://semver.org/).
