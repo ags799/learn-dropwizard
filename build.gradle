@@ -22,7 +22,7 @@ apply plugin: 'pmd'
 group 'com.sharpandrew'
 version gitVersion()
 
-mainClassName = 'com.sharpandrew.learndropwizard.HelloWorldApplication'
+mainClassName = 'com.sharpandrew.learndropwizard.LearnDropwizardApplication'
 sourceCompatibility = 1.8
 
 run {
@@ -42,6 +42,7 @@ repositories {
 
 dependencies {
     compile group: 'io.dropwizard', name: 'dropwizard-core', version: "${dropwizardVersion}"
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: "${apacheCommonsLangVersion}"
     compile group: 'org.immutables', name: 'value', version: "${immutablesVersion}"
 
     testCompile group: 'junit', name: 'junit', version: "${junitVersion}"
