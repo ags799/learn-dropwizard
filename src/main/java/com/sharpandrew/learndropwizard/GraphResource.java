@@ -1,12 +1,12 @@
 package com.sharpandrew.learndropwizard;
 
+import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Maps;
-import java.net.URI;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.stream.Collectors;
 import javax.ws.rs.NotFoundException;
-import javax.ws.rs.core.Response;
 
 class GraphResource implements GraphService {
     private final AtomicLong graphCounter;
@@ -18,10 +18,10 @@ class GraphResource implements GraphService {
     }
 
     @Override
-    public Response add(Set<Edge> graph) {
+    public Long add(Set<Edge> graph) {
         Long id = graphCounter.incrementAndGet();
         graphs.put(id, graph);
-        return Response.created(URI.create(String.format("graphs/%s", id))).build();
+        return id;
     }
 
     @Override
@@ -31,6 +31,14 @@ class GraphResource implements GraphService {
         } else {
             throw new NotFoundException(String.format("There is no graph with id '%s'", id));
         }
+    }
+
+    @Override
+    public Set<Integer> getVertices(Long id) {
+        return get(id).stream()
+                .map(edge -> ImmutableSet.of(edge.getVertex1(), edge.getVertex2()))
+                .flatMap(Set::stream)
+                .collect(Collectors.toSet());
     }
 
     @Override
