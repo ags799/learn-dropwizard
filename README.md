@@ -19,10 +19,9 @@ Clean with
 
     ./gradlew clean
 
-Build a Docker container named
-`ags799/learn-dropwizard:$VERSION` with
+Build a Docker container named `ags799/learn-dropwizard` with
 
-    ./gradlew dockerBuildImage
+    ./gradlew dockerBuild
 
 Run that Docker container with
 
