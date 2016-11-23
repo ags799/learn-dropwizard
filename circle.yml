@@ -4,7 +4,7 @@ machine:
 
 test:
   override:
-    - ./gradlew dockerBuild
+    - ./gradlew customBaselineUpdateConfig build dockerBuild
 
 deployment:
   hub:

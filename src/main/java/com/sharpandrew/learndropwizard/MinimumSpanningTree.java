@@ -46,4 +46,5 @@ public class MinimumSpanningTree {
         return edges.stream().sorted(Comparator.comparingInt(Edge::getWeight)).collect(Collectors.toList());
     }
 
+    private MinimumSpanningTree() {}
 }

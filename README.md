@@ -11,6 +11,16 @@ download and usage instructions.
 
 ## Development
 
+Prepare static analysis tools with
+
+    ./gradlew customBaselineUpdateConfig
+
+Prepare your IDE with
+
+    ./gradlew idea
+
+You may now open the project with Intellij IDEA.
+
 Build with
 
     ./gradlew build

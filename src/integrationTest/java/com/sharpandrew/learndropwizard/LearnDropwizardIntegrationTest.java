@@ -4,7 +4,7 @@ import org.junit.ClassRule;
 import org.junit.Test;
 import org.testcontainers.containers.GenericContainer;
 
-public final class LearnDropwizardIntegrationTest {
+public class LearnDropwizardIntegrationTest {
     @ClassRule
     public static final GenericContainer CONTAINER =
             // Run the `dockerBuild` gradle task to ensure you are testing against a Docker container that reflects
@@ -13,7 +13,7 @@ public final class LearnDropwizardIntegrationTest {
             new GenericContainer("ags799/learn-dropwizard:latest").withExposedPorts(8080);
 
     @Test
-    public void test() throws Exception {
+    public final void test() throws Exception {
         // TODO(asharp)
     }
 }

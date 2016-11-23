@@ -1,10 +1,15 @@
 buildscript {
     repositories {
         jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
 
     dependencies {
-        classpath group: 'com.bmuschko', name: 'gradle-docker-plugin', version: "${gradleDockerPluginVersion}"
+        classpath "com.palantir:gradle-baseline-java:${gradleBaselineJavaVersion}"
+        classpath "com.bmuschko:gradle-docker-plugin:${gradleDockerPluginVersion}"
+        classpath "net.ltgt.gradle:gradle-apt-plugin:${gradleAptPluginVersion}"
     }
 }
 
@@ -14,11 +19,10 @@ plugins {
 }
 
 apply plugin: 'application'
-apply plugin: 'checkstyle'
 apply plugin: 'com.bmuschko.docker-java-application'
-apply plugin: 'findbugs'
+apply plugin: 'com.palantir.baseline'
 apply plugin: 'java'
-apply plugin: 'pmd'
+apply plugin: 'net.ltgt.apt'
 
 group 'com.sharpandrew'
 version gitVersion()
@@ -27,6 +31,7 @@ mainClassName = 'com.sharpandrew.learndropwizard.LearnDropwizardApplication'
 sourceCompatibility = 1.8
 
 repositories {
+    jcenter()
     mavenCentral()
 }
 
@@ -67,25 +72,40 @@ configurations {
 }
 
 dependencies {
-    compile group: 'io.dropwizard', name: 'dropwizard-core', version: "${dropwizardVersion}"
-    compile group: 'org.apache.commons', name: 'commons-lang3', version: "${apacheCommonsLangVersion}"
-    compile group: 'org.immutables', name: 'value', version: "${immutablesVersion}"
+    apt "org.immutables:value:${immutablesVersion}"
 
-    testCompile group: 'junit', name: 'junit', version: "${junitVersion}"
+    compileOnly "org.immutables:value:${immutablesVersion}:annotations"
 
-    integrationTestCompile group: 'org.testcontainers', name: 'testcontainers', version: "${testContainersVersion}"
-}
+    compile "io.dropwizard:dropwizard-core:${dropwizardVersion}"
+    compile "org.apache.commons:commons-lang3:${apacheCommonsLangVersion}"
+    compile "com.google.code.findbugs:findbugs-annotations:${findbugsAnnotationsVersion}"
 
-checkstyle {
-    configFile = file('checkstyle.xml')
-    ignoreFailures = false
-    toolVersion = "${checkstyleVersion}"
-}
+    testCompile "junit:junit:${junitVersion}"
 
-findbugs {
-    excludeFilter = file('findbugs-exclude.xml')
+    integrationTestCompile "org.testcontainers:testcontainers:${testContainersVersion}"
 }
 
 task dockerRun(dependsOn: 'dockerBuild', group: 'docker', type: Exec) {
+    // TODO(asharp): use String.split(' ')
     commandLine 'docker', 'run', '--rm', '-p', "${dockerPort}:${dockerPort}", dockerTagName, 'server'
+}
+
+// Note that the checked-in checkstyle-suppressions.xml and excludeFilter.xml can get out-of-date.
+// Check them against gradle-baseline's defaults whenever updating gradle-baseline.
+task customCheckstyleSuppressions(type: Copy) {
+    from 'checkstyle-suppressions.xml'
+    into '.baseline/checkstyle'
+    dependsOn 'baselineUpdateConfig'
+}
+
+task customFindbugsExcludeFilter(type: Copy) {
+    from 'excludeFilter.xml'
+    into '.baseline/findbugs'
+    dependsOn 'baselineUpdateConfig'
+}
+
+task customBaselineUpdateConfig() {
+    dependsOn 'customCheckstyleSuppressions'
+    dependsOn 'customFindbugsExcludeFilter'
+    group 'baseline'
 }
