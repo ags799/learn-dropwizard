@@ -1,5 +1,4 @@
 .baseline
-!.baseline/checkstyle/checkstyle-suppressions.xml
 .gradle
 .idea
 build
