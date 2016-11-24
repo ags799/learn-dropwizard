@@ -81,6 +81,7 @@ dependencies {
     compile "com.google.code.findbugs:findbugs-annotations:${findbugsAnnotationsVersion}"
 
     testCompile "junit:junit:${junitVersion}"
+    testCompile "org.assertj:assertj-core:${assertJVersion}"
 
     integrationTestCompile "org.testcontainers:testcontainers:${testContainersVersion}"
 }

@@ -1,7 +1,6 @@
 package com.sharpandrew.learndropwizard;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import com.google.common.collect.ImmutableSet;
 import java.util.Set;
@@ -40,7 +39,7 @@ public class MinimumSpanningTreeTest {
     }
 
     private void runMinimumSpanningTree(Set<Edge> input, Set<Edge> output) {
-        assertThat(MinimumSpanningTree.minimumSpanningTree(input), is(output));
+        assertThat(MinimumSpanningTree.minimumSpanningTree(input)).isEqualTo(output);
     }
 
 }
