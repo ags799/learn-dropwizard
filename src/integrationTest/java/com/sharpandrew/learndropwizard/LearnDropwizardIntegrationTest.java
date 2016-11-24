@@ -1,5 +1,7 @@
 package com.sharpandrew.learndropwizard;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.ClassRule;
 import org.junit.Test;
 import org.testcontainers.containers.GenericContainer;
@@ -14,6 +16,6 @@ public class LearnDropwizardIntegrationTest {
 
     @Test
     public final void test() throws Exception {
-        // TODO(asharp)
+        assertThat(true).isEqualTo(false);
     }
 }
