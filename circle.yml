@@ -2,6 +2,12 @@ machine:
   services:
     - docker
 
+# from https://github.com/testcontainers/testcontainers-java/blob/master/circle.yml
+dependencies:
+  override:
+    - "sudo docker -d -e lxc -s btrfs -H 0.0.0.0:2376 -H unix:///var/run/docker.sock --log-level=debug --debug=true":
+        background: true
+
 test:
   override:
     - ./gradlew customBaselineUpdateConfig build dockerBuild integrationTest
