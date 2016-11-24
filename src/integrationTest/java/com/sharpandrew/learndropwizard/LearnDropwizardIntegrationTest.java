@@ -16,6 +16,7 @@ public class LearnDropwizardIntegrationTest {
 
     @Test
     public final void test() throws Exception {
-        assertThat(true).isEqualTo(true);
+        // TODO(asharp): use a (Jersey?) client to hit endpoints, ensure each exists
+        assertThat(true).isEqualTo(false);
     }
 }
