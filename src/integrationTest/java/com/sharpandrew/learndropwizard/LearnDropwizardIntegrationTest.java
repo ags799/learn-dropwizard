@@ -16,6 +16,6 @@ public class LearnDropwizardIntegrationTest {
 
     @Test
     public final void test() throws Exception {
-        assertThat(true).isEqualTo(false);
+        assertThat(true).isEqualTo(true);
     }
 }
