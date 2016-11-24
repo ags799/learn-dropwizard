@@ -2,5 +2,6 @@
 .gradle
 .idea
 build
+learn-dropwizard.iml
 learn-dropwizard.ipr
 learn-dropwizard.iws
