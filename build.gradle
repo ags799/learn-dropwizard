@@ -87,26 +87,22 @@ dependencies {
 }
 
 task dockerRun(dependsOn: 'dockerBuild', group: 'docker', type: Exec) {
-    // TODO(asharp): use String.split(' ')
-    commandLine 'docker', 'run', '--rm', '-p', "${dockerPort}:${dockerPort}", dockerTagName, 'server'
+    commandLine "docker run --rm -p ${dockerPort}:${dockerPort} ${dockerTagName} server".split(' ')
 }
 
 // Note that the checked-in checkstyle-suppressions.xml and excludeFilter.xml can get out-of-date.
 // Check them against gradle-baseline's defaults whenever updating gradle-baseline.
-task customCheckstyleSuppressions(type: Copy) {
+task customCheckstyleSuppressions(dependsOn: 'baselineUpdateConfig', type: Copy) {
     from 'checkstyle-suppressions.xml'
     into '.baseline/checkstyle'
     dependsOn 'baselineUpdateConfig'
 }
 
-task customFindbugsExcludeFilter(type: Copy) {
+task customFindbugsExcludeFilter(dependsOn: 'baselineUpdateConfig', type: Copy) {
     from 'excludeFilter.xml'
     into '.baseline/findbugs'
-    dependsOn 'baselineUpdateConfig'
 }
 
-task customBaselineUpdateConfig() {
-    dependsOn 'customCheckstyleSuppressions'
-    dependsOn 'customFindbugsExcludeFilter'
-    group 'baseline'
+task customBaselineUpdateConfig(
+        dependsOn: ['customCheckstyleSuppressions', 'customFindbugsExcludeFilter'], group: 'baseline') {
 }
