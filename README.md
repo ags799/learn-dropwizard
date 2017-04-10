@@ -1,6 +1,6 @@
 # Learn Dropwizard
 [![Build Status](https://circleci.com/gh/ags799/learn-dropwizard.svg?style=shield&circle-token=beac835a1c461670d578e3016d6b85581721e19f)](https://circleci.com/gh/ags799/learn-dropwizard)
-[![Docker Automated buil](https://img.shields.io/docker/status/jrottenberg/ffmpeg.svg)](https://hub.docker.com/r/ags799/learn-dropwizard/)
+[![Docker Automated build](https://img.shields.io/docker/status/jrottenberg/ffmpeg.svg)](https://hub.docker.com/r/ags799/learn-dropwizard/)
 
 Practice for learning [Dropwizard](http://dropwizard.io). We implement answers to interview questions as a REST service.
 
